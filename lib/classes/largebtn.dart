@@ -3,29 +3,40 @@ import 'package:paymentapp/colors.dart';
 
 class LargeBtn extends StatelessWidget {
   final String? textbtn;
-  // final Color? textClr;
-  // final Color? background;
-  // final Function()? onTop;
-  // final bool? isborder;
+  final Color? textClr;
+  final Color? background;
+  final Function()? onTop;
+  final bool? isborder;
 
-  LargeBtn({
-    super.key,
-    this.textbtn,
-  });
+  const LargeBtn(
+      {super.key,
+      this.textbtn,
+      this.background = AppColors.mainColor,
+      this.isborder = false,
+      this.onTop,
+      this.textClr});
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
+    return GestureDetector(
+        onTap: onTop,
         child: Container(
-      decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: AppColors.mainColor, width: 2)),
-      child: Text(
-        textbtn!,
-        style: TextStyle(
-            color: Colors.white, fontSize: 50, fontWeight: FontWeight.bold),
-      ),
-    ));
+          margin: const EdgeInsets.only(left: 30, right: 30),
+          height: 60,
+          width: MediaQuery.of(context).size.width - 60,
+          decoration: BoxDecoration(
+              color: AppColors.mainColor,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: Border.all(color: AppColors.mainColor, width: 2)),
+          child: Center(
+            child: Text(
+              textbtn!,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ));
   }
 }
